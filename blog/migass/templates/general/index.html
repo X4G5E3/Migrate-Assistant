@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Home Section -->
+
+<section id="home" class="main-home parallax-section">
+     <div class="overlay"></div>
+     <div id="particles-js"></div>
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-12 col-sm-12">
+                    <h2>Привет! Это руководство по миграции в Казахстан</h2>
+                    <h4>Тут вы найдете ответы на свои вопросы</h4>
+                    <!--<a href="#blog" class="smoothScroll btn btn-default">Искать</a>-->
+               </div>
+
+          </div>
+     </div>
+</section>
+
+<!-- Blog Section -->
+
+<section id="blog">
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-offset-1 col-md-10 col-sm-12">
+                    <div class="blog-post-des">
+                    {% if request.user.is_superuser %}
+                         <a href="{% url 'create'%}" class="btn btn-default">Создать пост</a>
+                    {% endif %}
+                    </div>
+                    
+                    {% for i in post %}
+                    <div class="blog-post-thumb">
+                         <div class="blog-post-image">
+                              <a href="{{ i.get_absolute_url }}">
+                                   <img src="{{ i.img.url }}" class="img-responsive" alt="Blog Image">
+                              </a>
+                         </div>
+                         <div class="blog-post-title">
+                              <h3><a href="{{ i.get_absolute_url }}">{{ i.name }}</a></h3>
+                         </div>
+                         <div class="blog-post-format">
+                              <span><i class="fa fa-date"></i> {{ i.create_date }}</span>
+                         </div>
+                         <div class="blog-post-des">
+                              <p>{{ i.full_desc|slice:":200"}}...</p>
+                              <a href="{{ i.get_absolute_url }}" class="btn btn-default">Продолжить</a>
+                         </div>
+                    </div>
+                    {% endfor %}
+
+               </div>
+
+          </div>
+     </div>
+</section>
+{% endblock content %}
