@@ -17,3 +17,10 @@ class Comments(models.Model):
     user = models.CharField(max_length=50, blank=True)
     message = models.TextField()
     created = models.DateField(auto_now=False, auto_now_add=True)
+    
+class Contact(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(max_length=254)
+    subject = models.CharField(max_length=50)
+    message = models.TextField()
+    

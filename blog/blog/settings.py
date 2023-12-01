@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "debug_toolbar",
+    'debug_toolbar',
     'widget_tweaks',
     'rest_framework',
     'migass',
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'blog.urls'
@@ -160,3 +160,12 @@ LOGIN_REDIRECT_URL = '/'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+# Email for feedback
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'migrate.assistant@gmail.com'
+EMAIL_HOST_PASSWORD = '7Y1itVPkGoET'
+EMAIL_USE_TLS = True

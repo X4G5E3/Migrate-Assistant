@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Comments, Posts
+from .models import Comments, Posts, Contact
 from django.urls import reverse_lazy
 
 class UserRegistrationForm(forms.ModelForm):
@@ -34,4 +34,9 @@ class PostAddForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = ('img', 'name', 'desc', 'slug')
+        
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ('name', 'email', 'subject', 'message')
     

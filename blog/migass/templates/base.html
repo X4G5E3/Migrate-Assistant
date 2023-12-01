@@ -56,8 +56,7 @@ http://www.tooplate.com/view/2085-neuron
                <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'index'%}">Главная</a></li>
                     <li><a href="{% url 'about'%}">О нас</a></li>
-                    <!--<li><a href="{% url 'gallery'%}">Gallery</a></li>-->
-                    <li><a href="{% url 'contact'%}">Связаться с нами</a></li>
+                    <!--<li><a href="{% url 'contact'%}">Связаться с нами</a></li>-->
                     {% if request.user.is_authenticated %}
                     <li><a href="{% url 'logout'%}">Выйти</a></li>
                     {% else %}

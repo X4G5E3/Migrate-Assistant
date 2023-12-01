@@ -7,11 +7,10 @@ from django.contrib.auth.views import LoginView
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('notadm/', admin.site.urls),
     path('', index, name='index'),
     path('about/', about, name='about'),
-    path('gallery/', gallery, name='gallery'),
-    path('contact/', contact, name='contact'),
+    path('contact48945894759486/', contact, name='contact'),
     path('post/<slug:post_slug>/', single_post, name='single-post'),
     path('editor/<int:pk>/', Editor.as_view(), name='editor'),
     path('editor/', CreatePost.as_view(), name='create'),

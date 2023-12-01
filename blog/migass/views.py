@@ -1,13 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Posts
-from rest_framework import generics, permissions, status, mixins
-from rest_framework.renderers import TemplateHTMLRenderer
-from rest_framework.response import Response
+from rest_framework import generics, permissions
 from .serializers import PostSerializer
 from .forms import *
 from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth.views import LoginView
+from django.core.mail import EmailMessage, send_mail
 
 
 
@@ -24,17 +22,18 @@ def about(request):
     }
     return render(request, 'general/about.html', context)
 
-def gallery(request):
-    context = {
-        'title': 'Gallery'
-    }
-    return render(request, 'general/gallery.html', context)
-
 def contact(request):
-    context = {
-        'title': 'Contact'
-    }
-    return render(request, 'general/contact.html', context)
+    if request.method == 'POST':
+        form = ContactForm(data=request.POST)
+        if form.is_valid():
+            subject = request.POST['subject']
+            message = request.POST['message']
+            from_email = request.POST['email']
+            send_mail(subject, message, from_email, ['migrate.assistant@mail.ru'], fail_silently=False)
+            return redirect('index')
+    else:
+        form_class = ContactForm()
+    return render(request, 'general/contact.html', {'form': form_class, 'title':'Contact'})
 
 @csrf_protect
 def single_post(request, post_slug):
