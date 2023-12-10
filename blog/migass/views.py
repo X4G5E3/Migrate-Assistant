@@ -5,7 +5,7 @@ from .serializers import PostSerializer
 from .forms import *
 from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_protect
-from django.core.mail import EmailMessage, send_mail
+from django.core.mail import send_mail
 
 
 
@@ -26,10 +26,12 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(data=request.POST)
         if form.is_valid():
+            name = request.POST['name']
             subject = request.POST['subject']
+            email = request.POST['email']
             message = request.POST['message']
-            from_email = request.POST['email']
-            send_mail(subject, message, from_email, ['migrate.assistant@mail.ru'], fail_silently=False)
+            Message = f'Сообщение пользователя {name}, электронная почта: {email}. Сообщение: {message}'
+            send_mail(subject, Message, 'migrate.assistant@mail.ru', ['migrate.assistant@mail.ru'], fail_silently=False)
             return redirect('index')
     else:
         form_class = ContactForm()

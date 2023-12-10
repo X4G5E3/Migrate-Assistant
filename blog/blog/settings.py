@@ -164,8 +164,10 @@ INTERNAL_IPS = [
 # Email for feedback
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'migrate.assistant@gmail.com'
-EMAIL_HOST_PASSWORD = '7Y1itVPkGoET'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'migrate.assistant@mail.ru'
+EMAIL_HOST_PASSWORD = '94EpdybQs@3|'  # 7Y1itVPkGoET - gmail
 EMAIL_USE_TLS = True
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
